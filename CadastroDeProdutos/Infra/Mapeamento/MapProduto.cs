@@ -8,8 +8,11 @@ namespace CadastroDeProdutos.Infra.Mapeamento
 	{
 		public void Configure(EntityTypeBuilder<Produto> builder)
 		{
+			builder.ToTable("Tb_Produtos");
 			builder.HasKey(x => x.Id);
-			
+			builder.Property(x => x.Nome).IsRequired();
+			builder.Property(x => x.Preco).IsRequired();
+			builder.HasKey(x => x.Fabricante);
 		}
 	}
 }

@@ -11,9 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ContextoDb>(opt =>
-	opt.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoBD")));
+	opt.UseMySql(ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("ConexaoBD"))));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
+//AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//
 builder.Services.AddScoped<IServicoProdutos,ServicoProduto>();
 builder.Services.AddEndpointsApiExplorer();
 
