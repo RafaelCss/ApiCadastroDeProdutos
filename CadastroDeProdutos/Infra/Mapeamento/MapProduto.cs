@@ -4,15 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CadastroDeProdutos.Infra.Mapeamento
 {
-	public class MapProduto : IEntityTypeConfiguration<Produto>
+	public class MapProduto : IEntityTypeConfiguration<Produto> 
 	{
 		public void Configure(EntityTypeBuilder<Produto> builder)
 		{
-			builder.ToTable("Tb_Produtos");
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Nome).IsRequired();
 			builder.Property(x => x.Preco).IsRequired();
-			builder.HasKey(x => x.Fabricante);
+		//	builder.HasMany(x => x.Fabricante.Id = IdFabricante);
 		}
 	}
 }

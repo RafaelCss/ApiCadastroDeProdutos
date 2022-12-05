@@ -10,13 +10,13 @@ namespace CadastroDeProdutos.Infra
 		{
 		}
 
-		public DbSet<Produto> Produtos { get; set; } = null!;
-		public DbSet<Fabricante> Fabricantes { get; set; } = null!;
+		public DbSet<Produto> Produtos { get; set; } 
+		public DbSet<Fabricante> Fabricantes { get; set; } 
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.ApplyConfiguration(new MapProduto());
-			modelBuilder.ApplyConfiguration(new MapFabricante());
+			modelBuilder.ApplyConfiguration<Produto>(new MapProduto());
+			modelBuilder.ApplyConfiguration<Fabricante>(new MapFabricante());
 
 			base.OnModelCreating(modelBuilder);
 		}

@@ -9,12 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+var connectioDataBase = builder.Configuration.GetConnectionString("connectionMysql");
 
 builder.Services.AddDbContext<ContextoDb>(opt =>
-	opt.UseMySql(ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("ConexaoBD"))));
+	opt.UseMySql(connectioDataBase,ServerVersion.AutoDetect(connectioDataBase)));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //
 builder.Services.AddScoped<IServicoProdutos,ServicoProduto>();
 builder.Services.AddEndpointsApiExplorer();
