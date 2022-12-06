@@ -10,7 +10,7 @@ namespace CadastroDeProdutos.Infra.Mapeamento
 		{
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Nome).IsRequired();
-			builder.HasMany(x => x.Produtos);
+
 		}
 	}
 }

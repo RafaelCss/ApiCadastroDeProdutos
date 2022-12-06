@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CadastroDeProdutos.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,7 +38,7 @@ namespace CadastroDeProdutos.Migrations
                     Nome = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Preco = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    FabricanteId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
+                    FabricanteId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
@@ -47,7 +47,8 @@ namespace CadastroDeProdutos.Migrations
                         name: "FK_Produtos_Fabricantes_FabricanteId",
                         column: x => x.FabricanteId,
                         principalTable: "Fabricantes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 

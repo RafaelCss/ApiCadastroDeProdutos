@@ -44,7 +44,7 @@ namespace CadastroDeProdutos.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("FabricanteId")
+                    b.Property<Guid>("FabricanteId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Nome")
@@ -63,9 +63,13 @@ namespace CadastroDeProdutos.Migrations
 
             modelBuilder.Entity("CadastroDeProdutos.Dominio.Entidades.Produto", b =>
                 {
-                    b.HasOne("CadastroDeProdutos.Dominio.Entidades.Fabricante", null)
+                    b.HasOne("CadastroDeProdutos.Dominio.Entidades.Fabricante", "Fabricante")
                         .WithMany("Produtos")
-                        .HasForeignKey("FabricanteId");
+                        .HasForeignKey("FabricanteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Fabricante");
                 });
 
             modelBuilder.Entity("CadastroDeProdutos.Dominio.Entidades.Fabricante", b =>

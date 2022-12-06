@@ -40,9 +40,9 @@ namespace CadastroDeProdutos.Dominio.Servicos.ServicoProdutos
 		}
 
 
-		public async  Task<List<Produto>> BuscarTodos() 
+		public async Task<List<Produto>> BuscarTodos() 
 		{
-			return await _contextoDb.Produtos.ToListAsync();
+			return  await _contextoDb.Produtos.ToListAsync();
 		}
 
 		public async Task<bool> Deletar(Guid id)

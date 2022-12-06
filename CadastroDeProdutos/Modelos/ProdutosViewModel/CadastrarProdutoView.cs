@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace CadastroDeProdutos.Modelos.Produtos
 {
@@ -7,11 +6,10 @@ namespace CadastroDeProdutos.Modelos.Produtos
 	{
 		[Display(Name = "Nome Produto")]
 		public string Nome { get; set; }
-		[Display(Name = "Fabricante")]
-		public CadastrarFabricanteRequest  Fabricante { get; set; }
-		public string Categoria { get; set; }
 		[Display(Name = "Preço")]
 		public decimal Preco { get; set; }
+		[Display(Name = "Fabricante")]
+		public CadastrarFabricanteRequest  Fabricante { get; set; }
 	}
 
 	public class CadastrarFabricanteRequest

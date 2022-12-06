@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0-alpha.1",
           "Swashbuckle.AspNetCore": "6.4.0"
         },

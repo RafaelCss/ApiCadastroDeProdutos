@@ -11,7 +11,7 @@ namespace CadastroDeProdutos.Infra.Mapeamento
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Nome).IsRequired();
 			builder.Property(x => x.Preco).IsRequired();
-		//	builder.HasMany(x => x.Fabricante.Id = IdFabricante);
+			builder.HasOne(p => p.Fabricante);
 		}
 	}
 }
