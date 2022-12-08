@@ -19,17 +19,18 @@ namespace CadastroDeProdutos.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<Fabricante>> BuscarFabricantes()
+		public async Task<ActionResult<List<Fabricante>>> BuscarFabricantes()
 		{
-			var resultado = _servicoFabricantes.BuscarTodos();
+			var resultado = await _servicoFabricantes.BuscarTodos();
+	
 			return Ok(resultado);
 		}
 
 		[HttpPost]
-		public ActionResult CadastrarFabricante([FromBody] CadastrarFabricanteView fabricante)
+		public async Task<IActionResult> CadastrarFabricante([FromBody] CadastrarFabricanteView fabricante)
 		{
-			var mapperFabricante = _mapper.Map<Fabricante>(fabricante);
-			var resultado = _servicoFabricantes.Adcionar(mapperFabricante);
+			// var mapperFabricante =_mapper.Map<CadastrarFabricanteView>(fabricante);
+			var resultado = await _servicoFabricantes.Adcionar(fabricante);
 			return Ok(resultado);
 		}
 	}

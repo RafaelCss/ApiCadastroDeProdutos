@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastroDeProdutos.Migrations
 {
     [DbContext(typeof(ContextoDb))]
-    [Migration("20221205145223_Inicial")]
+    [Migration("20221206184425_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -67,17 +67,12 @@ namespace CadastroDeProdutos.Migrations
             modelBuilder.Entity("CadastroDeProdutos.Dominio.Entidades.Produto", b =>
                 {
                     b.HasOne("CadastroDeProdutos.Dominio.Entidades.Fabricante", "Fabricante")
-                        .WithMany("Produtos")
+                        .WithMany()
                         .HasForeignKey("FabricanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Fabricante");
-                });
-
-            modelBuilder.Entity("CadastroDeProdutos.Dominio.Entidades.Fabricante", b =>
-                {
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

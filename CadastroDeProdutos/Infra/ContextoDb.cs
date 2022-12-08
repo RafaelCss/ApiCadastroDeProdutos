@@ -15,8 +15,8 @@ namespace CadastroDeProdutos.Infra
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.ApplyConfiguration<Produto>(new MapProduto());
-			modelBuilder.ApplyConfiguration<Fabricante>(new MapFabricante());
+			modelBuilder.ApplyConfiguration(new MapProduto());
+			modelBuilder.ApplyConfiguration(new MapFabricante());
 
 			base.OnModelCreating(modelBuilder);
 		}
