@@ -29,8 +29,8 @@ namespace CadastroDeProdutos.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CadastrarFabricante([FromBody] CadastrarFabricanteView fabricante)
 		{
-			// var mapperFabricante =_mapper.Map<CadastrarFabricanteView>(fabricante);
-			var resultado = await _servicoFabricantes.Adcionar(fabricante);
+			 var mapperFabricante =_mapper.Map<Fabricante>(fabricante);
+			var resultado =  _servicoFabricantes.AdicionarFabricante(mapperFabricante);
 			return Ok(resultado);
 		}
 	}

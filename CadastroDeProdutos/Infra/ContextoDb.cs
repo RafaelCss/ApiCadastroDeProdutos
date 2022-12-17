@@ -6,6 +6,10 @@ namespace CadastroDeProdutos.Infra
 {
 	public class ContextoDb : DbContext
 	{
+		public ContextoDb()
+		{
+		}
+
 		public ContextoDb(DbContextOptions<ContextoDb> options) : base(options)
 		{
 		}

@@ -1,50 +1,40 @@
 ﻿using AutoMapper;
 using CadastroDeProdutos.Dominio.Entidades;
 using CadastroDeProdutos.Dominio.Interface.IFabricantes;
+using CadastroDeProdutos.Dominio.Repositorio;
 using CadastroDeProdutos.Infra;
-using CadastroDeProdutos.Modelos.FabricantesViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CadastroDeProdutos.Dominio.Servicos.ServicosFabricantes
 {
-	public class ServicosFabricantes : IServicosFabricantes
+	public class ServicosFabricantes : Repositorio<Fabricante>, IServicosFabricantes
 	{
-		private readonly ContextoDb _contextoDb;
-		private readonly IMapper _mapper;
+		private readonly DbContextOptions<ContextoDb> _contextoDb;
 
-		public ServicosFabricantes(ContextoDb contextoDb, IMapper mapper)
+		public ServicosFabricantes() 
 		{
-			_contextoDb = contextoDb;
-			_mapper = mapper;
+			_contextoDb = new DbContextOptions<ContextoDb>();
 		}
 
-		public async Task<CadastrarFabricanteView> Adcionar(CadastrarFabricanteView obj)
+		public async Task AdicionarFabricante(Fabricante request)
 		{
-			var mapper = _mapper.Map<Fabricante>(obj);
-			var cadastro = await _contextoDb.AddAsync(mapper);
-				await _contextoDb.SaveChangesAsync();
-			var cadastrado = _mapper.Map<CadastrarFabricanteView>(cadastro);
-			return cadastrado;
+			var fabricante = new Fabricante(request.Categoria,request.Nome);
+
+			using(var data = new ContextoDb(_contextoDb))
+			{
+				if(fabricante != null)
+					await data.Set<Fabricante>().AddAsync(fabricante);	
+					await data.SaveChangesAsync();
+			}
 		}
 
-		public Task<CadastrarFabricanteView> Atualizar(CadastrarFabricanteView  obj,Guid id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<CadastrarFabricanteView> BuscarPorId(Guid id)
+		public Task<List<Fabricante>> BuscarFabricante(Guid id,string nome,string categoria)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<List<CadastrarFabricanteView>> BuscarTodos()
-		{
-			var busca = await _contextoDb.Fabricantes.ToListAsync();
-			var mapper = _mapper.Map<List<CadastrarFabricanteView>>(busca);
-			return mapper;
-		}
-
-		public Task<bool> Deletar(Guid id)
+		public Task ModificarFabricante(Guid id,string nome,string categoria)
 		{
 			throw new NotImplementedException();
 		}

@@ -2,6 +2,7 @@ using CadastroDeProdutos.Dominio.Interface;
 using CadastroDeProdutos.Dominio.Interface.Generica;
 using CadastroDeProdutos.Dominio.Interface.IFabricantes;
 using CadastroDeProdutos.Dominio.Interface.IServicoProdutos;
+using CadastroDeProdutos.Dominio.Repositorio;
 using CadastroDeProdutos.Dominio.Servicos.ServicoProdutos;
 using CadastroDeProdutos.Dominio.Servicos.ServicosFabricantes;
 using CadastroDeProdutos.Infra;
@@ -23,7 +24,6 @@ builder.Services.AddDbContext<ContextoDb>(opt =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IServicoProdutos,ServicoProduto>();
 builder.Services.AddScoped<IServicosFabricantes,ServicosFabricantes>();
-
 //
 var app = builder.Build();
 

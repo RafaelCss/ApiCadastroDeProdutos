@@ -1,62 +1,34 @@
-﻿using CadastroDeProdutos.Dominio.Entidades;
+﻿using AutoMapper;
+using CadastroDeProdutos.Dominio.Entidades;
 using CadastroDeProdutos.Dominio.Interface.IServicoProdutos;
+using CadastroDeProdutos.Dominio.Repositorio;
 using CadastroDeProdutos.Infra;
-using Microsoft.EntityFrameworkCore;
+using CadastroDeProdutos.Modelos.Produtos;
 
 namespace CadastroDeProdutos.Dominio.Servicos.ServicoProdutos
 {
-    public class ServicoProduto : IServicoProdutos
+	public class ServicoProduto : Repositorio<Produto>, IServicoProdutos
 	{
 		private readonly ContextoDb _contextoDb;
 
-		public ServicoProduto(ContextoDb contextoDb)
+		public ServicoProduto(ContextoDb contextoDb) : base(contextoDb)
 		{
-			_contextoDb = contextoDb;
+			_contextoDb= contextoDb;
 		}
 
-		public async Task<Produto> BuscarPorId(Guid id)
+		public async Task CadastarProduto(string nome,decimal preco,Guid fornecedor)
 		{
-			return await _contextoDb.Produtos.FirstOrDefaultAsync(x => x.Id == id);
+			var produto = new Produto(nome, preco, fornecedor);
+			await Adcionar(produto);
 		}
 
-		public async Task<Produto> Adcionar(Produto obj)
+		public Task ModificarProduto(Guid id,string nome,decimal preco,Guid fornecedor)
 		{
-			var resultado = await _contextoDb.AddAsync(obj);
-				await _contextoDb.SaveChangesAsync();
-			return obj;
-		}
-
-		public async Task<Produto> Atualizar(Produto obj,Guid id)
-		{
-			var produto = await BuscarPorId(id);
-			if (produto == null)
-			{
-				throw new Exception("Produto não encontrado"); 
-			}
-			//var resultado = await _contextoDb.Update(produto);
-			await _contextoDb.SaveChangesAsync();
-
-			return produto;
-		}
-
-
-		public async Task<List<Produto>> BuscarTodos() 
-		{
-			return  await _contextoDb.Produtos.ToListAsync();
-		}
-
-		public async Task<bool> Deletar(Guid id)
-		{
-			var produto = await BuscarPorId(id);
-			if(produto == null)
-			{
-				throw new Exception("Produto não encontrado");
-			}
-			_contextoDb.Produtos.Remove(produto);
-			await _contextoDb.SaveChangesAsync();
-
-			return true;
-
+			throw new NotImplementedException();
 		}
 	}
+
+
+
+
 }

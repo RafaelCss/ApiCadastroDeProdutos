@@ -24,26 +24,25 @@ namespace CadastroDeProdutos.Controllers
 		[HttpGet]
 		public async Task<ActionResult<List<BuscarProdutoView>>> BuscarProdutos()
 		{
-			var resultado =await _servicoProduto.BuscarTodos();
-			return Ok(resultado);
+			//var resultado =await _servicoProduto.BuscarTodos();
+			return Ok();
 		}
 
 
 		[HttpPost]
 		public  async Task<IActionResult> CadastrarProduto([FromBody] CadastrarProdutoView produtoView)
 		{
-			var produto = _mapper.Map<Produto>(produtoView);
-			var resultado = await _servicoProduto.Adcionar(produto);
-			var mapview = _mapper.Map<BuscarProdutoView>(resultado);
-			return Ok(mapview);
+		//	var resultado = await _servicoProduto.Adcionar(produtoView);
+			
+			return Ok(produtoView);
 		}
 
 
 		[HttpGet("{id}")]
 		public ActionResult<BuscarProdutoView> BuscarProdutoPorId(Guid id)
 		{
-			var resultado = _servicoProduto.BuscarPorId(id);
-			return Ok(resultado);
+		//	var resultado = _servicoProduto.BuscarPorId(id);
+			return Ok(id);
 		}
 	}
 }

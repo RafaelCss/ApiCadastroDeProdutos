@@ -2,7 +2,6 @@
 using CadastroDeProdutos.Dominio.Entidades;
 using CadastroDeProdutos.Modelos.FabricantesViewModel;
 using CadastroDeProdutos.Modelos.Produtos;
-using CadastroDeProdutos.Modelos.ProdutosViewModel;
 
 namespace CadastroDeProdutos.AutoMapper
 {
@@ -10,12 +9,13 @@ namespace CadastroDeProdutos.AutoMapper
 	{
 		public AutoMapper()
 		{
-			// Mapper Produtos
+			// Mapeando os Produtos
 			CreateMap<CadastrarProdutoView,Produto>();
-			// Mapper Fabricante
+			CreateMap<Produto,CadastrarProdutoView>();
+			// Mapeando os Fabricante
 			CreateMap<CadastrarFabricanteView,Fabricante>();
 			CreateMap<Fabricante,CadastrarFabricanteView>();
-			CreateMap<CadastrarFabricanteView,BuscarFabricantesView>();
+
 		}
 	}
 }

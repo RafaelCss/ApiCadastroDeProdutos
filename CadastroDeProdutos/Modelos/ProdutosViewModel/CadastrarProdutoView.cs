@@ -9,11 +9,7 @@ namespace CadastroDeProdutos.Modelos.Produtos
 		[Display(Name = "Preço")]
 		public decimal Preco { get; set; }
 		[Display(Name = "Fabricante")]
-		public CadastrarFabricanteRequest  Fabricante { get; set; }
+		public Guid Fabricante { get; set; }
 	}
 
-	public class CadastrarFabricanteRequest
-	{
-		public Guid? Id { get; set; }
-	}
 }
