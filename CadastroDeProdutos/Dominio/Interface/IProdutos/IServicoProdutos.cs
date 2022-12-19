@@ -5,9 +5,10 @@ using CadastroDeProdutos.Dominio.Interface.Generica;
 
 namespace CadastroDeProdutos.Dominio.Interface.IServicoProdutos
 {
-    public interface IServicoProdutos : IRepositorio<Produto>
+    public interface IServicoProdutos : IGenerica<Produto>
     {
-        public Task CadastarProduto(string nome , decimal preco, Guid fornecedor);
-		public Task ModificarProduto(Guid id,string nome,decimal preco,Guid fornecedor);
+		Task<bool> AdicionarProduto(Produto fabricante);
+		Task ModificarProduto(Guid id,string nome,string preco);
+		Task<List<Produto>> BuscarProduto(Guid id,string nome);
 	}
 }

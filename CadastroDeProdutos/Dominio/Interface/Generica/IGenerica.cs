@@ -1,6 +1,6 @@
 ﻿namespace CadastroDeProdutos.Dominio.Interface.Generica
 {
-    public interface IRepositorio<T> where T : class
+    public interface IGenerica<T> where T : class
     {
         Task BuscarPorId(Guid id);
         Task<List<T>> BuscarTodos();

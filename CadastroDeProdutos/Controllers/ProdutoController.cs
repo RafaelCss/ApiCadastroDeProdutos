@@ -30,10 +30,10 @@ namespace CadastroDeProdutos.Controllers
 
 
 		[HttpPost]
-		public  async Task<IActionResult> CadastrarProduto([FromBody] CadastrarProdutoView produtoView)
+		public async Task<IActionResult> CadastrarProduto([FromBody] CadastrarProdutoView produtoView)
 		{
-		//	var resultado = await _servicoProduto.Adcionar(produtoView);
-			
+			var mapper = _mapper.Map<Produto>(produtoView);
+			var resultado = await _servicoProduto.AdicionarProduto(mapper);
 			return Ok(produtoView);
 		}
 

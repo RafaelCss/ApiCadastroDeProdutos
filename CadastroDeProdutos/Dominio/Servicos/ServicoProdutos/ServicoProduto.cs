@@ -1,28 +1,30 @@
-﻿using AutoMapper;
+﻿
 using CadastroDeProdutos.Dominio.Entidades;
 using CadastroDeProdutos.Dominio.Interface.IServicoProdutos;
 using CadastroDeProdutos.Dominio.Repositorio;
 using CadastroDeProdutos.Infra;
-using CadastroDeProdutos.Modelos.Produtos;
 
 namespace CadastroDeProdutos.Dominio.Servicos.ServicoProdutos
 {
 	public class ServicoProduto : Repositorio<Produto>, IServicoProdutos
 	{
-		private readonly ContextoDb _contextoDb;
-
 		public ServicoProduto(ContextoDb contextoDb) : base(contextoDb)
 		{
-			_contextoDb= contextoDb;
+
 		}
 
-		public async Task CadastarProduto(string nome,decimal preco,Guid fornecedor)
+		public async Task<bool> AdicionarProduto(Produto produto)
 		{
-			var produto = new Produto(nome, preco, fornecedor);
 			await Adcionar(produto);
+			return true;
 		}
 
-		public Task ModificarProduto(Guid id,string nome,decimal preco,Guid fornecedor)
+		public Task<List<Produto>> BuscarProduto(Guid id,string nome)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task ModificarProduto(Guid id,string nome,string preco)
 		{
 			throw new NotImplementedException();
 		}

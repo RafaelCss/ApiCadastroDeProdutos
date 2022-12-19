@@ -5,9 +5,9 @@ using CadastroDeProdutos.Dominio.Interface.Generica;
 
 namespace CadastroDeProdutos.Dominio.Interface.IFabricantes
 {
-	public interface IServicosFabricantes : IRepositorio<Fabricante>								
+	public interface IServicosFabricantes : IGenerica<Fabricante>								
 	{
-		Task AdicionarFabricante(Fabricante fabricante);
+		Task<bool> AdicionarFabricante(Fabricante fabricante);
 		Task ModificarFabricante(Guid id , string nome , string categoria);
 		Task<List<Fabricante>> BuscarFabricante(Guid id,string nome,string categoria);
 	}

@@ -6,23 +6,30 @@ using System.Runtime.InteropServices;
 
 namespace CadastroDeProdutos.Dominio.Repositorio
 {
-	public  class  Repositorio<T> : IRepositorio<T>, IDisposable where T : class
+	public class Repositorio<T> : IGenerica<T>, IDisposable where T : class
 	{
-		private readonly DbContextOptions<ContextoDb> _contextoDb;
+		private readonly ContextoDb _contextoDb;
 
-		public Repositorio()
+		public Repositorio(ContextoDb contextoDb)
 		{
-			_contextoDb = new DbContextOptions<ContextoDb>();
+			_contextoDb = contextoDb ;
 		}
 
+		protected DbSet<T> Entidade
+		{
+			get{ return _contextoDb.Set<T>();}
+		}
+
+
+		#region //Adicionar  
 		public async Task Adcionar(T obj)
 		{
-			using(var data = new ContextoDb(_contextoDb))
-			{
-				await data.Set<T>().AddAsync(obj);	
-			}
-			
+			await Entidade.AddAsync(obj);
+			 Salvar();
+		
 		}
+		#endregion
+
 
 		public Task Atualizar(T obj,Guid id)
 		{
@@ -34,16 +41,23 @@ namespace CadastroDeProdutos.Dominio.Repositorio
 			throw new NotImplementedException();
 		}
 
-		public Task<List<T>> BuscarTodos()
+		public async Task<List<T>> BuscarTodos()
 		{
-			throw new NotImplementedException();
+			return await Entidade.ToListAsync();
 		}
 
 		public Task<bool> Deletar(Guid id)
 		{
 			throw new NotImplementedException();
 		}
+
+		private void Salvar()
+		{
+			_contextoDb.SaveChangesAsync();
+		}
+
 		#region // configurando Dipose 
+
 		private bool _disposedValue;
 		// Instantiate a SafeHandle instance.
 		private SafeHandle _safeHandle = new SafeFileHandle(IntPtr.Zero,true);
@@ -62,6 +76,7 @@ namespace CadastroDeProdutos.Dominio.Repositorio
 				_disposedValue = true;
 			}
 		}
+
 		#endregion
 	}
 }

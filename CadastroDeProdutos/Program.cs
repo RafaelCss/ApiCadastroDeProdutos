@@ -24,6 +24,7 @@ builder.Services.AddDbContext<ContextoDb>(opt =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IServicoProdutos,ServicoProduto>();
 builder.Services.AddScoped<IServicosFabricantes,ServicosFabricantes>();
+builder.Services.AddScoped(typeof(IGenerica<>), typeof(Repositorio<>));
 //
 var app = builder.Build();
 
